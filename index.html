@@ -481,24 +481,15 @@ formData.forEach((value, key) => data[key] = value);
 const res = await fetch(form.action, {
   method: 'POST',
   body: JSON.stringify(data),
-  headers: { 
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  }
+  mode: 'no-cors'
 });
-        if (res.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          btn.textContent = 'Something went wrong — please try again';
-          btn.disabled = false;
-        }
+        form.style.display = 'none';
+    success.style.display = 'block';
       } catch(err) {
         btn.textContent = 'Something went wrong — please try again';
         btn.disabled = false;
       }
     });
   </script>
-
 </body>
 </html>
