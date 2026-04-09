@@ -305,7 +305,7 @@
       <p class="form-title">Your free holiday quote</p>
 
       <form id="enquiry-form"
-        action="https://formspree.io/f/mnjorkga"
+        action="https://script.google.com/macros/s/AKfycbyh9QplDmk-cj7z38WOnN8fwzBribFbE1Krulm4AIuISxM0ofhyzQfNRJ27bYpo1n9nPQ/exec"
         method="POST">
 
         <div class="field-row">
@@ -474,11 +474,18 @@
       btn.textContent = 'Sending...';
       btn.disabled = true;
       try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
+        const formData = new FormData(form);
+const data = {};
+formData.forEach((value, key) => data[key] = value);
+
+const res = await fetch(form.action, {
+  method: 'POST',
+  body: JSON.stringify(data),
+  headers: { 
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  }
+});
         if (res.ok) {
           form.style.display = 'none';
           success.style.display = 'block';
